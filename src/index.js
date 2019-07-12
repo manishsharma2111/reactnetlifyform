@@ -19,6 +19,7 @@ const App=({
 <Form
 name='contact'
 data-netlify='true'
+data-netlify-recaptcha='true'
 data-netlify-honeypot='bot-field'
 >
 <Field type="hidden" name="form-name" />
