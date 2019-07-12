@@ -90,6 +90,7 @@ const ReactApp = withFormik({
       alert('Error:Please Try Again !')
       setSubmitting(false)
     })
+    console.log(values)
   }
 })(App)
 
