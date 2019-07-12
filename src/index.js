@@ -51,6 +51,11 @@ const customInputForm = ({field, form: {touched, errors}, ...props}) => (
         {touched[field.name] && errors[field.name] && <div className="error">{errors[field.name]}</div>}
     </div>
 );
+const encode = (data)=>{
+   return Object.keys(data)
+   .map(key=>encodeURIComponent(key) + '+' + encodeURIComponent(data[key]))
+   .join('&')
+ }
 
 const ReactApp = withFormik({
   mapPropsToValues({firstname,lastname,state,city}) {
@@ -67,11 +72,7 @@ const ReactApp = withFormik({
     state:Yup.string().required('State is required'),
     city:Yup.string().required('City is required')
   }),
-  const encode = (data)=>{
-    return Object.keys(data)
-    .map(key=>encodeURIComponent(key) + '+' + encodeURIComponent(data[key]))
-    .join('&')
-  },
+
   handleSubmit(values,{resetForm,setSubmitting,setErrors}) {
     fetch('/',{
       method:'POST',
