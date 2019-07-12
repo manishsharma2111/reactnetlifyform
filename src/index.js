@@ -16,7 +16,11 @@ const App=({
 
 })=>(
   <Jumbotron>
-<Form>
+<Form
+name='contact'
+dat-netlify='true'
+dat-netlify-honeypot='bot-field'
+>
   <FormGroup>
   <Label for="firstname">FirstName</Label>
   <Field type='text' name='firstname' component={customInputForm}placeholder='Firstname'/>
@@ -63,14 +67,28 @@ const ReactApp = withFormik({
     state:Yup.string().required('State is required'),
     city:Yup.string().required('City is required')
   }),
+  const encode = (data)=>{
+    return Object.keys(data)
+    .map(key=>encodeURIComponent(key) + '+' + encodeURIComponent(data[key]))
+    .join('&')
+  },
   handleSubmit(values,{resetForm,setSubmitting,setErrors}) {
-    setTimeout(()=>{if(values.firstname==='manish'){
-      setErrors({firstname:'this name is taken'})
-    }else{
-        resetForm()}
+    fetch('/',{
+      method:'POST',
+      headers:{'Content-Type': 'application/x-wwww-form-urlencoded'},
+      body:encode({
+        'form-name':'contact',
+        ...values,
+      }),
+    })
+    .then(()=>{
+      alert('Sucess!')
       setSubmitting(false)
-    },2000)
-    console.log(values)
+    })
+    .catch(error=>{
+      alert('Error:Please Try Again !')
+      setSubmitting(false)
+    })
   }
 })(App)
 
