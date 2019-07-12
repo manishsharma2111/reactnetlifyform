@@ -3,8 +3,23 @@
   <head>
     <meta charset="utf-8" />
     <title>React Netlify form</title>
-
+  </head>
+  <body>
+    <form
+         data-netlify="true"
+         data-netlify-recaptcha="true"
+         name="contact"
+        data-netlify-honeypot="bot-field"
+        hidden
+       >
+         <input type="text" name="firstname" />
+         <input type="text" name="lastname" />
+         <input type="text" name="state" />
+         <input type="text" name="city" />
+         <input name="bot-field" type="hidden" />
+       </form>
 
     <div id="root"></div>
+  </body>
 
 </html>

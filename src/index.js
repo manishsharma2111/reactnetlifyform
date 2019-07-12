@@ -18,9 +18,11 @@ const App=({
   <Jumbotron>
 <Form
 name='contact'
-dat-netlify='true'
-dat-netlify-honeypot='bot-field'
+data-netlify='true'
+data-netlify-honeypot='bot-field'
 >
+<Field type="hidden" name="form-name" />
+<Field type="hidden" name="bot-field" />
   <FormGroup>
   <Label for="firstname">FirstName</Label>
   <Field type='text' name='firstname' component={customInputForm}placeholder='Firstname'/>
@@ -37,7 +39,7 @@ dat-netlify-honeypot='bot-field'
     <Label for="city">City</Label>
   <Field type='text' name='city' component={customInputForm} placeholder='City'/>
   </FormGroup>
-  <Button disabled={isSubmitting}>Submit</Button>
+  <Button   type = 'submit' disabled={isSubmitting}>Submit</Button>
 
 </Form>
 </Jumbotron>
@@ -60,6 +62,8 @@ const encode = (data)=>{
 const ReactApp = withFormik({
   mapPropsToValues({firstname,lastname,state,city}) {
     return  {
+    " bot-field": "",
+      "form-name": "contact",
       firstname:firstname || '',
       lastname:lastname || '',
       state:state || '',
